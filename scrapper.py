@@ -1,3 +1,13 @@
+'''
+__author__: Dalton Cole
+__description__: This script counts the frequency of words in a CNN article. It does this
+					by using the URLs contained in article_list. It then parses the 
+					HTML of every webpage extracting the data for the article in the
+					"zn-body_paragraph" class div. If this div is not present, this
+					script does not work. The data is then saved in csv format under
+					data.csv
+'''
+
 from urllib.request import urlopen	# Get url
 from bs4 import BeautifulSoup		# Parse HTML
 import re 							# Take out punctuation
