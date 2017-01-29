@@ -1,3 +1,5 @@
+''' Author - Mohammed Jasam '''
+
 import csv
 import sys
 import os
@@ -8,9 +10,24 @@ from math import*
 from decimal import Decimal
 
 
-#os.remove('')
-#---Code to do all the formatting---#
 
+#---Code to do all the formatting---#
+def runItAll(mergefilename,name,filename):
+    mergeCSV(mergefilename)
+    defineHeader(name)
+    swapCols(filename,name)
+    return
+
+
+#---Cleans the Repository and Leaves necessary Data and Files---#
+def endItAll():
+    os.remove('eudist.csv')
+    os.remove('jacdist.csv')
+    os.remove('cosdist.csv')
+    os.remove('final.csv')
+    os.remove('sorted.csv')
+
+    
 #---Code to append a Header to the result-set!---#
 def defineHeader(name):
     with open('sorted.csv',newline='') as f:
@@ -22,42 +39,37 @@ def defineHeader(name):
         w.writerows(data)
     return
 
+
 #---Code to merge both CSV Files---#
-def mergeCSV(filename):
+def mergeCSV(mergefilename):
     with open('artlist.csv', 'r') as book1:
-        with open(filename, 'r') as book2:
+        with open(mergefilename, 'r') as book2:
             reader1 = csv.reader(book1, delimiter=',')
             reader2 = csv.reader(book2, delimiter=',')
-
-            both = []
-       
+            both = []       
             for row1, row2 in zip(reader1, reader2):
                 row2.append(row1[0])
                 both.append(row2)
-
             with open('final.csv', 'w') as output:
-                writer = csv.writer(output, delimiter=',')
-           
+                writer = csv.writer(output, delimiter=',')           
                 writer.writerows(both)
-    #sortResult('final.csv')
-            
+    sortResult('final.csv')            
     return
 
+
 #---Code to Swap the Columns in the CSV---#
-def swapCols():
-    with open('sorted.csv', 'r') as infile, open('EuclideanDistance.csv', 'a') as outfile:
+def swapCols(filename, name):
+    with open('sorted.csv', 'r') as infile, open(filename, 'a') as outfile:
         # output dict needs a list for new column ordering
-        fieldnames = ['Articles','Euclidean Distance']
+        fieldnames = ['Articles',name]
         writer = csv.DictWriter(outfile, fieldnames=fieldnames)
         # reorder the header first
         writer.writeheader()
         for row in csv.DictReader(infile):
             # writes the reordered rows to the new file
             writer.writerow(row)
-    os.remove('eudist.csv')
-    os.remove('final.csv')
-    os.remove('sorted.csv')
     return
+
 
 #---Code to Sort the Result-Set---#
 def sortResult(filename):
@@ -72,6 +84,7 @@ def sortResult(filename):
         writer.writerows(od)
     return
 
+
 #---Euclidean Distance---#   
 def euclidean_distance(x,y):
     return sqrt(sum(pow(a-b,2) for a, b in zip(x, y)))
@@ -81,15 +94,8 @@ with open('eudist.csv', 'w') as fo:
     for x, line in enumerate(fi):        
         v.append([int(z) for z in (line.split(',')) if z])
         print(euclidean_distance(v[x-1],v[x]),file=fo)
-#mergeCSV('eudist.csv')
+runItAll('eudist.csv','Euclidean Distance','EuclideanDistance.csv')
 
-
-mergeCSV('eudist.csv')
-sortResult('final.csv')
-defineHeader('Euclidean Distance')
-swapCols()
-
-'''
 
 #---Jaccard Distance---#
 def jaccard_similarity(x,y): 
@@ -97,11 +103,13 @@ def jaccard_similarity(x,y):
     union_cardinality = len(set.union(*[set(x), set(y)]))
     return intersection_cardinality/float(union_cardinality)
 fi = open("testdata.csv")
-with open('JaccardDistance.txt', 'w') as fo:    
+with open('jacdist.csv', 'w') as fo:    
     v =[]
     for x, line in enumerate(fi):        
         v.append([int(z) for z in (line.split(',')) if z])
         print(jaccard_similarity(v[x-1],v[x]),file=fo)
+runItAll('jacdist.csv','Jaccard Distance','JaccardDistance.csv')
+
 
 #---Cosine Distance---#
 def square_rooted(x): 
@@ -111,9 +119,12 @@ def cosine_similarity(x,y):
     denominator = square_rooted(x)*square_rooted(y)
     return round(numerator/float(denominator),3)
 fi = open("testdata.csv")
-with open('CosineDistance.txt', 'w') as fo:    
+with open('cosdist.csv', 'w') as fo:    
     v =[]
     for x, line in enumerate(fi):        
         v.append([int(z) for z in (line.split(',')) if z])
         print(cosine_similarity(v[x-1],v[x]),file=fo)
-'''
+runItAll('cosdist.csv','Cosine Distance','CosineDistance.csv')
+
+###----###----###---Let's free the Memory---###----###----###
+endItAll()
