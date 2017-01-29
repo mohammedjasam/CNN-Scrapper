@@ -14,6 +14,7 @@ Scripted in Python 3.6
 * beautifulsoup4 (4.5.1)
 * lxml
 * nltk
+* SciPy
 
 ## Output:
 
