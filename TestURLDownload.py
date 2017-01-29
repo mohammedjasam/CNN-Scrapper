@@ -95,8 +95,3 @@ with open("data.csv", 'w') as csvfile:
 		test = [site] + [word_count] + word_frequency
 		# Write site title and word frequency as a row in csv
 		writer.writerow(test)
-    
-
-
-
-
