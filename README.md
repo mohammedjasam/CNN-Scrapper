@@ -11,7 +11,6 @@ Scripted in Python 3.6
 
 * Python 3.5.2+
 * "article_list" contains all the list of urls which can be obtained by running the crawler "article_url"
- Use pip to install the following:
 * beautifulsoup4 (4.5.1)
 * lxml
 * nltk
