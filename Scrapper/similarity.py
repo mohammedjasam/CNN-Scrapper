@@ -1,6 +1,6 @@
 import math
 
-with open("data.csv", 'r') as csvfile:
+with open("datanew.csv", 'r') as csvfile:
 	# Read each row in csv file
 	rows = csvfile.readlines()
 
@@ -29,10 +29,10 @@ with open("data.csv", 'r') as csvfile:
 			distance_between_each_pair.append(math.sqrt(sum((rows[row][column] - rows[pair][column]) ** 2 for column in range(2, number_of_words))))
 
 			euclidean_distance_between_pairs.append(distance_between_each_pair)
-
+	print(euclidean_distance_between_pairs[0])
 	## Convert to similarity ##
 	# Find maximum
-	maximum = 0.000000001
+	'''maximum = 0.000000001
 	for row in euclidean_distance_between_pairs:
 		for column in row:
 			if maximum < column:
@@ -51,7 +51,7 @@ with open('troll.csv','w') as fo:
 		print(euclidean_distance_similarity[i],file=fo)
 
 
-
+'''
 '''
 	### Cosine Similarity ###
 
