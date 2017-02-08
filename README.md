@@ -4,8 +4,9 @@ This script scrapes CNN article pages for their word frequency and then creates 
 
 ## How to Run
 Scripted in Python 3.6 but needs python 2.7+ too :)
-
-"python3 scrapper.py"
+* Run "python3 scrapper.py"
+* Use the Data.csv in Similarity Analyzer Folder
+* Run "python3 Parallel.py" (This step needs python 2.7, so make sure you've installed them both)
 
 ## Requirements:
 
