@@ -8,7 +8,13 @@ import collections
 import pandas as pd
 from math import*
 from decimal import Decimal
+import time
+import subprocess
+from multiprocessing import Process
 
+#---Generating the TestData for execution of the Algorithms---#
+subprocess.call(" python testDataGenerator.py 1", shell=True)
+time.sleep(5)  # Delay for 5 seconds
 
 '''
 #---Code to do all the formatting---#
@@ -84,14 +90,13 @@ def sortResult(filename):
         writer.writerows(od)
     return
 
-'''
 #---Euclidean Distance---#
 def euclidean_distance(x,y):
     return sqrt(sum(pow(a-b,2) for a, b in zip(x, y)))
 fi = open("testdata.csv")
 row_count = sum(1 for row in fi)
 print(row_count)
-with open('eudist.csv', 'w') as fo:
+with open('EuclideanDistance.csv', 'w') as fo:
     v =[]
     for count in range(row_count):
         #print(count)
@@ -117,7 +122,7 @@ def jaccard_similarity(x,y):
 fi = open("testdata.csv")
 row_count = sum(1 for row in fi)
 print(row_count)
-with open('jacdist.csv', 'w') as fo:
+with open('JaccardDistance.csv', 'w') as fo:
     v =[]
     for count in range(row_count):
         fi = open("testdata.csv")
@@ -142,7 +147,7 @@ def cosine_similarity(x,y):
 fi = open("testdata.csv")
 row_count = sum(1 for row in fi)
 print(row_count)
-with open('cosdist.csv', 'w') as fo:
+with open('CosineDistance.csv', 'w') as fo:
     v =[]
     for count in range(row_count):
         fi = open("testdata.csv")
@@ -153,7 +158,8 @@ with open('cosdist.csv', 'w') as fo:
             if (count < row_count):
                 v.append([int(z) for z in (line.split(',')) if z])
                 dist.append(cosine_similarity(v[count],v[x]))
-runItAll('cosdist.csv','Cosine Distance','CosineDistance.csv')
+#runItAll('cosdist.csv','Cosine Distance','CosineDistance.csv')
 
 ###----###----###---Let's free the Memory---###----###----###
-endItAll()
+#endItAll()
+#'''
