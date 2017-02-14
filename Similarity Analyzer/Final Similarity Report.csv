@@ -1,0 +1,18 @@
+Articles,Euclidean Similarity with Article #1
+#1   March spurs efforts to get more women to run for office - CNNPolitics.com,0.0
+#22  David Axelrod: Barack Obama's legacy can't be erased - CNN.com,64.31174076325411
+"#81  ""Obama's tough dilemma on Manning",67.01492371106603
+#25  Examining the top contenders on Trump's Supreme Court list - CNNPolitics.com,67.20119046564577
+"#91  ""Eastern Mosul liberated from ISIS",67.57958271549181
+Articles,Cosine Similarity with Article #1
+#1   March spurs efforts to get more women to run for office - CNNPolitics.com,1.0
+#74  Trump's EPA pick took hands-off approach to environmental crisis that shook Oklahoma - CNNPolitics.com,0.859
+#21  Trump's new world disorder - CNNPolitics.com,0.851
+"#46  ""Building Trump's wall: For Texans",0.845
+#22  David Axelrod: Barack Obama's legacy can't be erased - CNN.com,0.834
+Articles,Jaccard Similarity with Article #1
+#1   March spurs efforts to get more women to run for office - CNNPolitics.com,1.0
+#99  Who can sue Trump over emoluments? - CNNPolitics.com,0.64
+"#39  ""Obama UN rep rips Russia",0.6086956521739131
+#65  Trump CIA chief hails predecessor who bashed the President - CNNPolitics.com,0.5909090909090909
+#89  US investigating Flynn calls with Russian diplomat - CNNPolitics.com,0.5833333333333334

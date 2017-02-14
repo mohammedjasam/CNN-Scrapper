@@ -1,4 +1,5 @@
-''' Author - Mohammed Jasam '''
+### Scripted by Mohammed Jasam
+### mnqnd@mst.edu
 
 import csv
 import sys
@@ -11,13 +12,42 @@ from decimal import Decimal
 import time
 import subprocess
 from multiprocessing import Process
+import scipy
+import scipy.spatial
+import numpy as np
+from matplotlib import pyplot as plt
+from matplotlib import cm
+import seaborn as sns
+import pandas
+import datetime
+from pylab import *
+
+
 
 ###---Creates a DataSet to execute the Algorithms---###
 subprocess.call(" python testDataGenerator.py 1", shell=True)
 time.sleep(5) # Delay for 5 seconds
 
+###---Visualizes the computational result of the Similarity Algorithms---###
+def viz(filename):
 
-'''###---Using Parallel Processing to run the Algorithms simultaneously!!!---###'''
+    data = pandas.read_csv(filename,  sep = ',')
+
+    timesIndex = data.index
+
+    dynamapsIndex = data.columns
+
+    levels = map(lambda x : round(x,10), linspace(data.min().min(), data.max().max(), 101))
+
+    contourf(data, levels = levels, cmap=plt.cm.jet_r, interpolation = 'bicubic')
+    colorbar()
+    xticks(range(0, len(dynamapsIndex),5), dynamapsIndex[::5], rotation = 'vertical')
+    yticks(range(0, len(timesIndex), 5), timesIndex[::5])
+    show()
+    return
+
+
+###---Using Parallel Processing to run the Algorithms simultaneously!!!---###
 
 #---Function to calculate Euclidean Distance---#
 def func1():
@@ -88,7 +118,7 @@ def func3():
           print(dist,file=fo)
   print ('Finished Calculating Cosine Distance')
 
-
+###---Main Function---###
 if __name__ == '__main__':
   p1 = Process(target=func1)
   p1.start()
@@ -99,4 +129,21 @@ if __name__ == '__main__':
   p1.join()
   p2.join()
   p2.join()
+
   os.remove('testdata.csv')
+  subprocess.call(' python3 FindingSimilarArticles.py 1', shell=True)
+  print('')
+  ###---Visualizing---###
+  print('Visualizing Cosine Similarity Values')
+  viz('CosineDistance.csv')
+  print('Visualizing Euclidean Similarity Values')
+  viz('EuclideanDistance.csv')
+  print('Visualizing Jaccard Similarity Values')
+  viz('JaccardDistance.csv')
+  print('')
+  print('Open "Final Similarity Report" for the comparision')
+
+  ###---Cleaning the directory---###
+  os.remove('Result_EuclideanDistance.csv')
+  os.remove('Result_CosineDistance.csv')
+  os.remove('Result_JaccardDistance.csv')
