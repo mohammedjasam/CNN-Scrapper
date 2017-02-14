@@ -142,7 +142,7 @@ if __name__ == '__main__':
   viz('JaccardDistance.csv')
   print('')
   print('Open "Final Similarity Report" for the comparision')
-
+  subprocess.call(' python ranking.py 1', shell=True)
   ###---Cleaning the directory---###
   os.remove('Result_EuclideanDistance.csv')
   os.remove('Result_CosineDistance.csv')
